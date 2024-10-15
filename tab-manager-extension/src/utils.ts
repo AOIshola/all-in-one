@@ -6,6 +6,12 @@
 //     timeOpened: number;
 //     category: string;
 // }
+export const closeAllTabs = (tabs: chrome.tabs.Tab[]) => {
+    tabs.map((tab: chrome.tabs.Tab) => {
+        chrome.tabs.remove(tab.id!)
+    })
+}
+
 
 const moveAllTabsToOneTab = (tabs: chrome.tabs.Tab[]) => {
     const tabLinks = tabs.map((tab) => ({

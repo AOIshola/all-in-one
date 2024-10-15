@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import moveAllTabsToOneTab from './utils';
+import moveAllTabsToOneTab, { closeAllTabs } from './utils';
+// eAllTabs from './utils';
 // import { moveToOneTab } from './utils';
 
 function Popup() {
@@ -22,7 +23,10 @@ function Popup() {
   return (
     <div>
       <h1>Tab Manager</h1>
-      <button onClick={() => {return}}>Close All Tabs</button>
+      <div className='div-header'>
+        <button onClick={() => {closeAllTabs(tabs)}}>Close All Tabs</button>
+        <span>{tabs && tabs.length} tabs open</span>
+      </div>
       <ul>
         {tabs.map((tab) => (
           <li key={tab.id}>
