@@ -59,6 +59,47 @@ button:focus-visible {
   justify-content: space-between;
 }
 
+.pop-body {
+  /* border: 1px solid red; */
+  width: 320px;
+  padding: 5px;
+}
+
+.tab-list {
+  /* border: 1px solid white; */
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  justify-content: space-between;
+  /* align-items: flex-start; */
+  padding: 0px;
+}
+
+.tab-list > li {
+  list-style: none;
+  /* border: 1px solid red; */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-width: 100%;
+}
+
+.tab-list img {
+  width: 20px;
+  height: 20px;
+}
+
+.tab-list span {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  max-width: 85%;
+}
+
+.tab-list button {
+  float: right;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
