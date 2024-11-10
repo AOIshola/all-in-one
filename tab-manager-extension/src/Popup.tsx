@@ -7,7 +7,7 @@ function Popup() {
   const [tabs, setTabs] = useState<chrome.tabs.Tab[]>([]);
 
   useEffect(() => {
-    chrome.tabs.query({currentWindow: true}, (tabs) => {
+    chrome.tabs.query({ currentWindow: true }, (tabs) => {
       setTabs(tabs);
     });
   }, []);
@@ -20,18 +20,26 @@ function Popup() {
     }
   };
 
+  const formatTime = (lastAccessed: number) => {
+    return lastAccessed ? new Date(lastAccessed).toLocaleString() : "No Data"
+  }
+
   return (
-    <div>
+    <div className='pop-body'>
       <h1>Tab Manager</h1>
       <div className='div-header'>
         <button onClick={() => {closeAllTabs(tabs)}}>Close All Tabs</button>
         <span>{tabs && tabs.length} tabs open</span>
       </div>
-      <ul>
+      <ul className='tab-list'>
         {tabs.map((tab) => (
           <li key={tab.id}>
-            {tab.title}
-            <button onClick={() => closeTab(tab.id)}>Close</button>
+            <span>
+              <img src={tab.favIconUrl} alt="" />
+              {tab.title} - 
+              {formatTime(tab.lastAccessed!)}
+            </span>
+            <button onClick={() => closeTab(tab.id)}>X</button>
             {/* <button onClick={() => moveToOneTab(tab)}>Move tab to One tab</button> */}
           </li>
         ))}
