@@ -5,18 +5,31 @@
     "action": {
       "default_popup": "index.html"
     },
+    "icons": {
+      "16": "icon.png",
+      "48": "icon.png"
+    } ,
     "background": {
-      "service_worker": "background.js"
+      "service_worker": "background.js",
+      "web_accessible_resources": [
+        {
+          "resources": ["tablist.html"],
+          "icons": ["icon.png"]
+        }
+      ]
     },
     "permissions": [
       "tabs",
       "storage",
       "sessions",
-      "contextMenus"
+      "contextMenus",
+      "favicon",
+      "alarms",
+      "notifications"
     ],
     "web_accessible_resources": [
       {
-        "resources": ["tablist.html", "tablist.js"],
+        "resources": ["tablist.html", "tablist.js", "_favicon/*"],
         "matches": ["<all_urls>"]
       }
     ]
