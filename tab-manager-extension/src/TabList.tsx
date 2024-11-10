@@ -8,16 +8,17 @@ interface TabLink {
 
 function TabList() {
 
-    const [tabs, setTabs] = useState<TabLink[]>([]);
+    const [tabs, setTabs] = useState<chrome.tabs.Tab[]>([]);
 
     useEffect(() => {
         chrome.storage.local.get('tabLinks', (data) => {
             const storedTabs = data.tabLinks || [];
+            // storedTabs.filter((tab) => tab.url)
             setTabs(storedTabs);
         });
     }, []);
 
-    const reopenTab = (currentTab: TabLink, e: React.MouseEvent) => {
+    const reopenTab = (currentTab: chrome.tabs.Tab, e: React.MouseEvent) => {
       e.preventDefault();
         chrome.tabs.create({ url: currentTab.url});
 
@@ -32,7 +33,7 @@ function TabList() {
           console.log(data)
             const updatedTabs = data.tabLinks.filter((tab: TabLink) =>
                 // console.log(tab.id, currentTab.id)
-                tab.tabId !== currentTab.tabId
+                tab.tabId !== currentTab.id
             );
             console.log(updatedTabs)
             chrome.storage.local.set({ tabLinks: updatedTabs})
@@ -58,13 +59,20 @@ function TabList() {
         setTabs([]);
     }
 
+    // const tabFavicon = (tab: chrome.tabs.Tab) => {
+    //   if (tab.favIconUrl) {
+    //     return chrome.runtime.getURL(tab.favIconUrl)
+    //   }
+    // }
+
 // @ts-ignore
   return (
     <div>
       <h1>Your Tabs</h1>
       <ul>
         {tabs.length > 0 ? tabs.map((tab) => (
-          <li key={tab.tabId}>
+          <li key={tab.id}>
+            {/* <img src={tabFavicon(tab)} style={{ width: '40px', height: '40px'}} alt="" /> */}
             <a href={tab.url} target='blank' onClick={(e) => reopenTab(tab, e)}>{tab.title}</a>
           </li>
         ))
