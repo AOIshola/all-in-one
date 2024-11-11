@@ -1,7 +1,7 @@
 {
     "manifest_version": 3,
     "name": "Tab Manager",
-    "description": "Tab Manager is a interface to manage all open tabs in a browser window. Keep tabs of your tabs and manage them all in a single tab. You should try it out.",
+    "description": "Tab Manager is a interface to manage all open tabs in a browser window. Keep tabs of your tabs and manage them all in a single tab. Try it \n",
     "version": "1.0",
     "action": {
       "default_popup": "index.html"
